@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}   % use documentclass amsart too if you want
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyhdr} % COMMENT THIS OUT TO TURN OFF FANCY HEADERS
+\usepackage{verbatim}
+\usepackage{setspace}
+
+\hypersetup{
+  colorlinks= true, %Colours links instead of ugly boxes
+  urlcolor   = blue, %Colour for external hyperlinks
+  linkcolor  = blue, %Colour of internal links
+  citecolor  = blue %Colour of citations
+}
+
+
+
+
+
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{corollary}[equation]{Corollary}
+\theoremstyle{definition}
+\newtheorem{exercise}[equation]{Exercise}
+
+\newtheorem{example}[equation]{Example}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{question}[equation]{Question}
+\newtheorem{remark}[equation]{Remark}
+
+\numberwithin{equation}{section}
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+\begin{document}
+\parskip10pt
+\parindent0pt
+\baselineskip15pt
+\doublespacing
+
+\title{APPM 2350 Project 2: Hiking}
+\author{Davis Landry (section 223), Mahalie Hill (section 223)\\Mia Miller (section 213) \\ Jonathan Kish, Maribeth Oscamou}
+
+%I think we should add a photo here for the cover page
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+
+\fancyhf{}
+
+\rhead{\fancyplain{}{\thepage}} % predefined ()
+\lhead{\fancyplain{}{\rightmark }} % 1. sectionname, 1.1 subsection name etc
+%\cfoot{\fancyplain{}{\thepage}}
+
+\maketitle
+\newpage
+%\setcounter{page}{2}
+\tableofcontents
+\newpage
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+\newpage
+\lhead{]Landry, Hill, Miller Project 1}
+%\setcounter{page}{2}
+
+\section{Introduction} \label{APPM2350proj01sec01}
+
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%\setcounter{page}{4}
+\section{Background} \label{APPM2350proj01sec02}
+
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%\setcounter{page}{7}
+\section{Applications}
+\label{APPM2350proj01sec03}
+
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%\setcounter{page}{12}
+\section{Calculations} \label{APPM2350proj01sec05}
+
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%\setcounter{page}{13}
+\section{Results} \label{APPM2350proj01sec06}
+
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%\setcounter{page}{14}
+\section{Conclusion} \label{APPM2350proj01sec07}
+
+
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%\setcounter{page}{16}
+\section{Appendix} \label{APPM2350proj01sec08}
+
+
+
+\end{document}
