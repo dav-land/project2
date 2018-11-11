@@ -20,7 +20,7 @@
 (**)
 (*mountainPlot3D = Plot3D[m[x,y],{x,0,5},{y,0,5}, AxesLabel->{"x","y","z"}, PlotLabel->"Lagrange Mountain Range", ColorFunction->"Rainbow"]*)
 (**)
-(*mountainContour = ContourPlot[m[x,y],{x,0,5},{y,0,5}, PlotLegends->Automatic, ColorFunction->"Rainbow",Frame->{True,True,False,False},FrameLabel->Automatic, PlotLabel->"Lagrange Mountain Range Contour", Contours->10]*)
+(*mountainContour = ContourPlot[m[x,y],{x,0,5},{y,0,5}, PlotLegends->Automatic, ColorFunction->"Rainbow",Frame->{True,True,False,False},FrameLabel->Automatic, PlotLabel->"Lagrange Mountain Range Contour", Contours->20]*)
 
 
 (* ::Chapter:: *)
@@ -35,7 +35,7 @@
 (*mt[t_] :=Sum[mR[[i,3]]* gaussian[mR[[i,2]],Sqrt[(Sqrt[(mR[[i,1,1]]-(2.5 + 1.8Cos[4t]))^2 + (mR[[i,1,2]]-(2+1.2Sin[4t]))^2])^2]],{i,7}];*)
 (**)
 (*r[t_] := {2.5 + 1.8Cos[4t], 2+1.2Sin[4t]};*)
-(*r3D[t_] := {2.5 + 1.8Cos[4t], 2+1.2Sin[4t],m[2.5 + 1.8Cos[4t], 2+1.2Sin[4t]]};*)
+(*r3D[t_] := {2.5 + 1.8Cos[4t], 2+1.2Sin[4t],mt[t]};*)
 (**)
 (*path3D = ParametricPlot3D[r3D[t],{t,0,\[Pi]/2}, PlotStyle->{Red,Thickness[.01]}];*)
 (*path = ParametricPlot[r[t],{t,0,\[Pi]/2}, PlotStyle->Red];*)
@@ -48,11 +48,13 @@
 
 
 (* ::Subchapter:: *)
-(*Honey Badger (WRONG)*)
+(*Honey Badger (maybe wrong)*)
 
 
 (* ::Input:: *)
 (*gradr3D[t_] := {-7.2Sin[4 t],4.8 Cos[4 t],mt'[t]};*)
+(*(* a = Table[Graphics3D[Arrow[Tube[{r3D[t],r3D[t]+gradr3D[t]}]]],{t,0,\[Pi]/2,\[Pi]/30}];*)
+(*Show[{mountainPlot3D  ,path3D,point3D,a}] *)*)
 (*Norm[gradr3D[\[Pi]/4]]*)
 (*mt'[\[Pi]/4]*)
 (**)
@@ -63,21 +65,25 @@
 
 
 (* ::Input:: *)
-(*dVals = Table[mt'[t],{t,0,\[Pi]/2,\[Pi]/20000}];*)
-(**)
-(*Max[dVals]*)
-(*Min[dVals]*)
-(*Plot[mt'[t],{t,0,\[Pi]/2}]*)
+(*Maximize[{mt'[t],t>= 0},t]*)
+(*Minimize[{mt'[t],0<=t<= \[Pi]/2},t]*)
+(*Plot[mt'[t],{t,0,\[Pi]/2},PlotLabel->"Rate Change of Elevation",AxesLabel->{"hrs","1000ft/hr"}]*)
 
 
 (* ::Subchapter:: *)
-(*Highest Elevation(use lagrange multipliers)*)
+(*Highest Elevation*)
 
 
 (* ::Input:: *)
-(*elevVals =Table[mt[t],{t,0,\[Pi]/2,\[Pi]/20000}];*)
-(*Max[elevVals]*)
+(*gradMount[x_,y_] := {16. E^(-16 ((0.75 -x)^2+(3-y)^2)) (0.75 -x)+1.8 E^(-(1-x)^2-(1-y)^2) (1-x)+7.2E^(-4 ((2-x)^2+(3-y)^2)) (2-x)+18 E^(-9 ((3-x)^2+(1-y)^2)) (3-x)+13.5 E^(-9 ((3-x)^2+(3.5-y)^2)) (3-x)+6.4 E^(-4 ((3.75-x)^2+(1-y)^2)) (3.75-x)+8 E^(-4 ((4-x)^2+(3-y)^2)) (4-x),1.8 E^(-(1-x)^2-(1-y)^2) (1-y)+18 E^(-9 ((3-x)^2+(1-y)^2)) (1-y)+6.4 E^(-4 ((3.75-x)^2+(1-y)^2)) (1-y)+16. E^(-16 ((0.75-x)^2+(3-y)^2)) (3-y)+7.2 E^(-4 ((2-x)^2+(3-y)^2)) (3-y)+8 E^(-4 ((4-x)^2+(3-y)^2)) (3-y)+13.5 E^(-9 ((3-x)^2+(3.5-y)^2)) (3.5 -y)};*)
+(*carR[x_,y_] := (x-2.5)^2/3.24+(y-2)^2/1.44;*)
+(*gradR[x_,y_] := {0.6172839506172839 (-2.5+x),1.3888888888888888 (-2+y)};*)
+(**)
+(*FindRoot[{gradMount[x,y] == \[Lambda]*gradR[x,y],carR[x,y]== 1},{{\[Lambda],-1},{x,3},{y,1}}]*)
+(**)
 (*Plot[mt[t],{t,0,\[Pi]/2}]*)
+(*m[3.074084653389694,0.8626684621463107]*)
+(**)
 
 
 (* ::Text:: *)
@@ -88,12 +94,26 @@
 (*Lake Mochi*)
 
 
-(* ::Subchapter:: *)
-(*Rock inside of trail*)
+(* ::Input:: *)
+(*FindRoot[gradMount[x,y]==0 ,{{x,3},{y,2}}]*)
+(**)
+(*mochi = Graphics[{Blue,Disk[{3.084891978358271,2.1326960054211934},1/3]}];*)
+(*mochi3D = Graphics3D[{Blue,Cylinder[{{3.084891978358271,2.1326960054211934,0},{3.084891978358271,2.1326960054211934,0.03}},1/3]}];*)
+(**)
+(*Show[{mountainPlot3D  ,path3D,point3D, mochi3D}]*)
+(*Show[{mountainContour,path    ,point  , mochi}]*)
 
 
 (* ::Subchapter:: *)
-(*Clairautnium*)
+(*Rock inside of trail(could be wrong units)*)
+
+
+(* ::Input:: *)
+(*NIntegrate[1,{x,0.7,4.3},{y,0.06666666666666667 (30. -1. Sqrt[-301.+500. x-100. x^2]),0.06666666666666667(30.+Sqrt[-301.+500. x-100. x^2])},{z,-7,m[x,y]}]*1000^3*)
+
+
+(* ::Subchapter:: *)
+(*Clairautnium(could be wrong units)*)
 
 
 (* ::Input:: *)
