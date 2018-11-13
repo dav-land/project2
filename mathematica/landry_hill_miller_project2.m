@@ -13,14 +13,17 @@
 
 
 (* ::Input:: *)
-(*mR = {{{1,1},1,.9},{{3,1},3,1},{{3.75,1},2,.8},{{4,3},2,1},{{3,3.5},3,.75},{{2,3},2,.9},{{.75,3},4,.5}};*)
+(*mR = {{{1,1},1,.9,"K-13"},{{3,1},3,1,"Mount Adamore"},{{3.75,1},2,.8,"Issaquah Peak"},{{4,3},2,1,"Mount Jojo"},{{3,3.5},3,.75,"Soweroski Peak"},{{2,3},2,.9,"Leibs Peak"},{{.75,3},4,.5,"Jacobi Peak"}};*)
 (**)
 (*gaussian[\[Epsilon]_,r_] = E^(-(\[Epsilon]*r)^2);*)
 (*m[x_,y_] := Sum[mR[[i,3]]* gaussian[mR[[i,2]],Sqrt[(Sqrt[(mR[[i,1,1]]-x)^2 + (mR[[i,1,2]]-y)^2])^2]],{i,7}];*)
 (**)
-(*mountainPlot3D = Plot3D[m[x,y],{x,0,5},{y,0,5}, AxesLabel->{"x","y","z"}, PlotLabel->"Lagrange Mountain Range", ColorFunction->"GreenBrownTerrain"]*)
+(*mountainLabels = Table[Graphics[{White, Text[mR[[i,4]],mR[[i,1]]]}],{i,7}];*)
+(*mountainLabels3D = Table[Graphics3D[{White,Text[mR[[i,4]],{mR[[i,1,1]],mR[[i,1,2]],m[mR[[i,1,1]],mR[[i,1,2]]]}]}],{i,7}];*)
 (**)
-(*mountainContour = ContourPlot[m[x,y],{x,0,5},{y,0,5}, PlotLegends->Automatic, ColorFunction->"Rainbow",Frame->{True,True,False,False},FrameLabel->Automatic, PlotLabel->"Lagrange Mountain Range Contour", Contours->20]*)
+(*mountainPlot3D = Plot3D[m[x,y],{x,0,5},{y,0,5}, AxesLabel->{"x","y","z"}, PlotLabel->"Lagrange Mountain Range", ColorFunction->"GreenBrownTerrain"];*)
+(**)
+(*mountainContour = ContourPlot[m[x,y],{x,0,5},{y,0,5}, PlotLegends->Automatic, ColorFunction->"Rainbow",Frame->{True,True,False,False},FrameLabel->Automatic, PlotLabel->"Lagrange Mountain Range Contour", Contours->20];*)
 
 
 (* ::Chapter:: *)
@@ -43,8 +46,8 @@
 (*point3D = Graphics3D[{PointSize[Large],Green,Point[r3D[0]]}];*)
 (*point = Graphics[{PointSize[Large],Green,Point[r[0]]}];*)
 (**)
-(*Show[{mountainPlot3D  ,path3D,point3D}]*)
-(*Show[{mountainContour,path    ,point}]*)
+(*Show[{mountainPlot3D  ,path3D,point3D, mountainLabels3D}]*)
+(*Show[{mountainContour,path    ,point, mountainLabels}]*)
 
 
 (* ::Subchapter:: *)
@@ -5160,3 +5163,11 @@
 (* ::Input:: *)
 (*delta[x_,y_,z_] := E^(-.25((x-2.5)^2+(y-2.5)^2+(z-.2)^2));*)
 (*NIntegrate[delta[x,y,z],{x,0,5},{y,0,5},{z,0,m[x,y]}]*)
+
+
+(* ::Input:: *)
+(*(* All of the Radial Functions *)*)
+(*gaussian[\[Epsilon]_,r_] = E^(-(\[Epsilon]*r)^2);*)
+(*multiquadric[\[Epsilon]_,r_] = Sqrt[1+(\[Epsilon]*r)^2];*)
+(*inverseQuadratic[\[Epsilon]_,r_] = 1/(1+(\[Epsilon]*r)^2);*)
+(*inverseMultiquadric[\[Epsilon]_,r_] = 1/Sqrt[1+(\[Epsilon]*r)^2];*)
