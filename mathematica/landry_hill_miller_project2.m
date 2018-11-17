@@ -183,6 +183,3 @@
 (**)
 (*allPlots = Table[Plot3D[ecM[x,y,n],{x,0,5},{y,0,5},PlotRange->All,ColorFunction->"GreenBrownTerrain"],{n,50}]*)
 (**)
-
-
-
